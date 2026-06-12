@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, Inject } from '@nestjs/common';
 import { AttemptStatus } from '../payments/enums/attempt-status.enum';
 import { PaymentStatus } from '../payments/enums/payment-status.enum';
 import { ProviderCode } from '../providers/enums/provider-code.enum';
@@ -24,6 +24,7 @@ export interface RoutingProviderResponse {
 @Injectable()
 export class RoutingEngine {
   constructor(
+    @Inject('ROUTING_PROVIDERS')
     private readonly providerConfig: RoutingProviderConfig[] =
       DEFAULT_ROUTING_PROVIDERS,
   ) {}
