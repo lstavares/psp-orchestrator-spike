@@ -822,3 +822,186 @@ PR que introduziu aquela informação
 Isso transforma seu KB de uma simples coleção de arquivos em uma pipeline documental auditável.
 ```
 Se esse seu “KB” for especificamente um Amazon Bedrock Knowledge Base, essa arquitetura encaixa quase perfeitamente. Se for um KB/vector store próprio, como OpenSearch, pgvector ou outro, eu mudaria apenas a última parte; GitHub → S3 → Lambda continuaria praticamente igual.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Reunião técnica — Integração e fluxo de autenticação
+
+Informações gerais
+
+Participantes identificados
+  • Leandro Tavares
+  • Alexandre Manoel Souza
+  • Outros interlocutores não identificados em trechos pontuais
+
+Duração aproximada: 53 minutos
+
+Objetivo da reunião
+
+Alinhar o desenvolvimento de duas histórias relacionadas ao novo microserviço de integração e revisar o fluxo técnico de autenticação, especialmente a obtenção de code e access token, o tratamento de desafios de autenticação e a separação de rotas para melhorar a clareza da implementação e a observabilidade.
+
+Contexto inicial
+
+Foram mencionadas duas histórias que estavam sendo conduzidas anteriormente pelo Gabi e que seriam repassadas para continuidade.
+
+Uma delas foi identificada como:
+  • Criação da nova estrutura do microserviço de integração — 0324
+
+A outra história parece estar relacionada à inclusão de um canal e/ou à implementação de logs e métricas, mas o nome completo não ficou claro na gravação.
+
+Foi considerado vantajoso trabalhar nas duas histórias em sequência, pois elas pertencem à mesma linha técnica e envolvem componentes próximos do serviço de polling já desenvolvido.
+
+Pontos discutidos
+
+1. Relação entre as histórias
+  • As duas histórias possuem dependências ou contexto técnico semelhante.
+  • A intenção é aproveitar o conhecimento já adquirido no desenvolvimento do serviço de polling.
+  • O trabalho não necessariamente será realizado em paralelo, mas uma história poderá ser iniciada logo após a conclusão da outra.
+  • Os links das histórias foram compartilhados durante a conversa.
+
+2. Fluxo atual de autenticação
+
+O fluxo descrito durante a reunião foi, em linhas gerais:
+  1. A aplicação envia a senha ou o fator devidamente criptografado.
+  2. A solicitação chega ao MC.
+  3. O MC encaminha a requisição para o RBA.
+  4. O RBA consulta o componente ou serviço PW2.
+  5. A validação retorna ao RBA.
+  6. O RBA devolve o resultado ao MC Service.
+  7. O MC Service retorna um access token.
+
+3. Dúvida entre retorno de code e access token
+
+A principal questão técnica foi determinar se o fluxo deve:
+  • retornar diretamente um access token; ou
+  • retornar primeiro um code, exigindo uma chamada adicional para trocar esse código pelo access token.
+
+De acordo com a documentação consultada durante a reunião, há indícios de que o primeiro retorno deveria ser um code, e não o token final. Isso adicionaria uma etapa ao fluxo atual.
+
+Também foi discutida a possibilidade de o cenário seguir um fluxo semelhante ao implícito, no qual o token já seria retornado diretamente. Esse comportamento ainda precisa ser confirmado com base na documentação e no desenho oficial da arquitetura.
+
+4. Impactos na implementação existente
+
+Caso o fluxo realmente exija a obtenção prévia de um code, será necessário:
+  • alterar a implementação atualmente aberta em PR;
+  • revisar o ponto exato em que o retorno é processado;
+  • incluir a etapa de troca do code pelo token;
+  • avaliar mudanças nos controllers e nos casos de uso;
+  • revisar a nomenclatura das rotas existentes.
+
+5. Controllers e tratamento do desafio
+
+Foi discutida a necessidade de separar as responsabilidades do fluxo em controllers ou rotas diferentes.
+
+Entre os componentes mencionados estão:
+  • Token Controller;
+  • Authorize Challenge Controller;
+  • Submit Challenge Use Case;
+  • fluxo ou caso de uso de Initiate.
+
+O entendimento discutido foi:
+  • o Initiate seria responsável por criar ou iniciar o fluxo;
+  • na primeira etapa, campos como Client ID e Request URI seriam preenchidos;
+  • campos relacionados à sessão e ao envio do fator permaneceriam vazios até a etapa seguinte;
+  • o envio ou submissão do desafio aconteceria posteriormente;
+  • o tratamento do challenge pode exigir um controller específico.
+
+Também foi levantada a hipótese de utilizar a URI retornada dentro do Submit Challenge Use Case, mas esse encaixe ainda precisa ser validado.
+
+6. Separação de rotas
+
+Houve concordância de que separar as rotas é preferível a concentrar diferentes etapas em um único endpoint.
+
+A separação ajudaria a:
+  • eliminar ambiguidades entre início do fluxo e submissão do desafio;
+  • identificar com mais clareza a responsabilidade de cada etapa;
+  • facilitar manutenção e diagnóstico;
+  • permitir métricas específicas;
+  • melhorar a observabilidade do processo;
+  • identificar rapidamente se uma falha ocorreu no challenge, no submit ou em outra etapa.
+
+A orientação discutida foi seguir a linha de criar uma subdivisão ou rota específica, em linha com um comentário anterior feito pelo Cristian.
+
+Observabilidade
+
+A observabilidade foi apontada como um argumento importante para separar os endpoints.
+
+Se todas as etapas utilizarem a mesma rota, as métricas não deixarão claro em qual ponto do processo ocorreu uma falha. Com rotas distintas, será possível identificar, por exemplo:
+  • falha na criação ou início do fluxo;
+  • falha no challenge;
+  • falha no envio do fator;
+  • falha na submissão;
+  • falha na obtenção ou troca do token.
+
+Essa separação deverá facilitar tanto o monitoramento quanto a investigação de incidentes.
+
+Acesso à documentação e aos diagramas
+
+Leandro informou que não conseguiu acessar o link dos diagramas compartilhado anteriormente.
+
+Foram testados os ambientes de produção e sandbox, sem sucesso. O endereço citado durante a conversa parece estar relacionado a um domínio interno, mas sua grafia não ficou totalmente clara na gravação.
+
+Será necessário:
+  • confirmar o endereço correto;
+  • verificar se o acesso exige uma permissão adicional;
+  • solicitar a liberação, caso necessário;
+  • consultar os diagramas antes de fechar a implementação.
+
+Direcionamentos da reunião
+  • Trabalhar as duas histórias de forma sequencial, aproveitando o contexto técnico comum.
+  • Validar na documentação se o fluxo retorna diretamente um access token ou se retorna primeiro um code.
+  • Caso exista a etapa intermediária do code, ajustar a implementação e o PR atual.
+  • Separar as etapas do fluxo em rotas ou responsabilidades distintas.
+  • Evitar ambiguidade entre Initiate, Challenge e Submit.
+  • Estruturar os endpoints pensando também em logs, métricas e observabilidade.
+  • Seguir a proposta de criação de uma subdivisão específica, conforme orientação anteriormente mencionada pelo Cristian.
+  • Regularizar o acesso aos diagramas e à documentação da arquitetura.
+
+Pendências e pontos em aberto
+  1. Confirmar o nome e o escopo completo da segunda história.
+  2. Validar se o retorno inicial do fluxo é um code ou um access token.
+  3. Confirmar qual fluxo de autenticação está definido oficialmente na arquitetura.
+  4. Definir se será criado um novo controller para o challenge.
+  5. Definir como Initiate, Submit Challenge e obtenção do token serão distribuídos entre controllers e casos de uso.
+  6. Revisar a nomenclatura da rota do Token Controller.
+  7. Identificar as alterações necessárias no PR existente.
+  8. Confirmar o endereço correto da documentação e dos diagramas.
+  9. Solicitar acesso aos ambientes de produção e/ou sandbox, se necessário.
+  10. Definir as métricas e logs específicos para cada etapa do fluxo.
+
+Próximas ações
+
+Leandro
+  • Pesquisar o endereço correto da documentação e dos diagramas.
+  • Verificar a necessidade de solicitar acesso.
+  • Confirmar, por meio da documentação, o comportamento esperado para code e access token.
+  • Revisar os impactos da decisão no PR e no serviço já desenvolvido.
+
+Time técnico
+  • Confirmar a divisão das responsabilidades entre os controllers.
+  • Definir a separação das rotas.
+  • Validar o desenho final do fluxo de autenticação.
+  • Incluir critérios de logs, métricas e observabilidade na implementação.
+  • Confirmar os detalhes das duas histórias e a ordem de execução.
+
+Resumo executivo
+
+A reunião concentrou-se na continuidade de duas histórias ligadas ao novo microserviço de integração e na revisão do fluxo de autenticação. A principal dúvida é se a aplicação deve receber diretamente um access token ou primeiro um code, que posteriormente seria trocado pelo token.
+
+A documentação parece indicar a necessidade dessa etapa intermediária, o que pode exigir mudanças no PR e na estrutura atual. O direcionamento técnico mais forte foi separar as etapas de início, challenge e submissão em rotas ou componentes distintos. Além de reduzir ambiguidades, essa separação permitirá métricas mais precisas e facilitará a identificação do ponto exato de eventuais falhas.
+
+A definição final depende da validação dos diagramas e da documentação, aos quais Leandro ainda precisa obter acesso.
