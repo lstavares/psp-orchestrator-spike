@@ -1,0 +1,254 @@
+Itaú | Passagem Conhecimento Integration Channel 
+sex., 4 de set. de 2026
+
+0:01 - Leandro Tavares
+Oi?
+
+0:02 - Alexandre Manoel Souza
+Oi, dá pra escutar aí, cara? Ah, não, tá.
+
+0:15 - Leandro Tavares
+Ah, desculpa aí, mas pode...
+
+0:22 - Leandro Tavares
+Vamos continuar. Fala. Ela passou duas histórias que o Gabi estava tocando. Tô até com elas abertas aqui. Uma era de log métrica, de fato, né? Que acho que é do... Não sei se é do MC. É que ele expirou o login aqui, mas... Aqui já tá abrindo. Aí... Então, uma que eu vi aqui que era... E a outra que era a inclusão do canal de...
+
+1:18 - Alexandre Manoel Souza
+pura que é isso mas eu tô abrindo aqui na Não, tranquilo.
+
+1:49 - Leandro Tavares
+Não, por enquanto... Por enquanto, tranquilo.
+
+1:56 - Alexandre Manoel Souza
+Eles têm que entregar, né?
+
+2:02 - Leandro Tavares
+Normal.
+
+2:03 - Leandro Tavares
+É... Então, eu vou te passar aqui as duas histórias. Essas duas histórias aqui é a parte que mais fácil te passar o link aqui aliás tô te passando aqui já tá pegar aqui no chat com a te mandando aqui eu te mandei que são essas duas Criação da nova estrutura do microserviço de integração 0324.
+
+2:51 - Leandro Tavares
+E a outra?
+
+2:53 - Alexandre Manoel Souza
+Ah, é que isso aí que acontece. Eu acho que eu entendi.
+
+3:04 - Leandro Tavares
+É porque o serviço que eu desenvolvi há pouco um pouco aí do pulling, como ela falou que já tinha que mexer, ia ter uma outra história envolvendo essa flange métrica, eu falei, já passa para mim também que aí eu, não que eu vá tocar no paralelo, mas eu já puxo uma coisa em seguida da outra, entendeu? Porque já tá com a mão na mesma, eu acho que ela é a mesma linha, né?
+
+3:44 - Alexandre Manoel Souza
+isso fica contando é ah tá tá entendi Tá. Uhum.
+
+5:06 - Palestrante Não Identificado
+Uhum.
+
+5:52 - Alexandre Manoel Souza
+E aí? E aí? Uhum. Oi Vinho! Olha a cara dele! Você levou o potinho?
+
+7:33 - Alexandre Manoel Souza
+Gelol, você passou, né?
+
+7:42 - Alexandre Manoel Souza
+Passou gelol, né? Uhum. Obrigado.
+
+11:48 - Leandro Tavares
+Você está assistindo? Assistindo já o...
+
+12:33 - Alexandre Manoel Souza
+Outra coisa que eu vejo muito com esse tipo de jornal é que eu não adianto. Aí eu creio muito na vida. Aí eu não assumo a ideia. E aí E aí E ainda tinha três... Aí é logo do lado, tem esse bioma aqui, tá? Aí está, aham, de umas do lado tem o bioma. Aí atrás do baile tem esse bioma. Seis minutos. Atenção! O que é isso? E aí E aí E aí tem um cara que me passou, é porque ali que você me passou que ficou um pouco confuso, esse pooling recebe token, isso é só eu esquecer mais deixa eu ver o que ela me passou do ecossistema quando eu precisei desenvolver serviço do polling sabe eu acho que ali tinha alguma coisa deixa eu ver aqui que eu tô resgatando ah tá Uhum.
+
+ Uhum. Uhum. E aí Uhum. Uhum. E aí E aí E aí é code direto, não é access total para depois receber o code. Ah não, na verdade vem code ao invés de access token. Porque é porque basicamente aí ó tá mandou a senha lá criptografar né vai senha vai bater no mc mc vai mandar para rba rba vai bater lá no pw2, certo?
+
+22:09 - Leandro Tavares
+Vai devolver a validação, rba devolve a validação e o mcservice devolve já direto um access token. Aí, pelo que você está falando, precisa entender se não vai ter essa necessidade de, antes de pegar o access token, fazer a passagem do token, do code. Vem aqui.
+
+22:37 - Palestrante Não Identificado
+Uhum.
+
+23:09 - Alexandre Manoel Souza
+E aí Viu? Então, essa parte pularia, aliás, aquele que pega o código, não é o Italki, aqui.
+
+25:30 - Leandro Tavares
+Esse code aí seria o código do token aplicativo.
+
+25:55 - Alexandre Manoel Souza
+Uhum.
+
+26:02 - Leandro Tavares
+E aí Uhum.
+
+26:40 - Palestrante Não Identificado
+Uhum.
+
+27:34 - Leandro Tavares
+Pronto. Exatamente o que tá no desenho. Provavelmente vai cair num fluxo igual que você acabou de mostrar do implícito, né? Que volta já o Tolkien.
+
+28:01 - Alexandre Manoel Souza
+E aí Uhum. Uhum.
+
+29:15 - Leandro Tavares
+Barra par, barra torres e barra flores. Está.
+
+29:47 - Alexandre Manoel Souza
+Tá.
+
+30:04 - Leandro Tavares
+Mas esse token controller a rota vai ter que trocar a nomenclatura?
+
+30:27 - Alexandre Manoel Souza
+isso que você comentou agora? E aí E aí Uhum. Uhum, certo. Uhum. E aí, e aí e aí Esse vector que você fala agora, que é o vector sub bit, seria a senha Criptografada, certo?
+
+35:21 - Palestrante Não Identificado
+Tá.
+
+35:31 - Alexandre Manoel Souza
+E aí E aí E aí Uhum. Essa... Essa...
+
+36:39 - Leandro Tavares
+De acordo com o que está nessa documentação, então, que você comentou, ela bateria naquela rota para obter o code e não o token. Seria uma perna a mais, certo? Uma perna a mais. E aí entraria naquele caso de alterar, você mostrou lá mais ou menos onde tinha que alterar, dentro do PR lá que ele abriu, né?
+
+37:25 - Alexandre Manoel Souza
+Tem que mexer alguma... Aham. E aí e aí Uhum.
+
+39:26 - Palestrante Não Identificado
+Uhum.
+
+40:04 - Alexandre Manoel Souza
+E aí E aí E aí Aí teria que ter um...
+
+40:54 - Leandro Tavares
+um outro controller para controlar o desafio. Dentro desse Autorize Challenge Controller, aí seria caso ele decidisse... Mas então, nesse caso deu trabalhar com a URI que for retornado, ele se aplicaria dentro do Submit Challenge Use Case? Eu tô tentando traduzir, entendeu? O que que seria o Submit Initiate.
+
+42:04 - Alexandre Manoel Souza
+Initiate implicaria criar o flow lá, né? E aí E aí Uhum.
+
+43:46 - Leandro Tavares
+Client ID, Request URI preenchido na primeira vez. Outsession e Factor Submit vazio porque ele ainda não chegou na hora do...
+
+44:09 - Alexandre Manoel Souza
+Essa seria na próxima etapa. E aí E aí Sim. Uhum. E aí E aí E aí Entendi.
+
+45:58 - Leandro Tavares
+Mas nesse caso, certo, mas seria talvez quebrar isso aí, para não ficar essa ambiguidade que você falou.
+
+46:24 - Alexandre Manoel Souza
+Fora que até numa questão de observability, cara, seria melhor.
+
+46:44 - Leandro Tavares
+melhor também, porque separar, assim, sei lá, da gente tipo ter uma métrica pra saber, não sei, alguma gap, alguma coisa que esteja rolando, em que ponto que tá acontecendo, se é na hora do challenge ou se é na hora, né, do... É, então, se Se tiver essa ambiguidade aí vai ficar confuso na hora de ter uma observabilidade. Na prática ele vai apontar... Ah, veio tudo pela mesma rota ali, né? Então, separando a rota a gente já tem um jeito de bater o olho e falar...
+
+ Morreu no Challenge ou morreu no...
+
+47:38 - Alexandre Manoel Souza
+É, o Submit né? É. Uhum. Uhum. Uhum. É isso aí! Entrega até as... É pra terminar até as 6, né?
+
+49:27 - Leandro Tavares
+Ela acredita se eu falar, ó, entrega até as 18 tá aí, tipo, vai perceber que é zoeira, né? Putz, sabe o que eu ia te perguntar, mano? Eu fui tentar acessar aquele link que você passou, né? Eu acho que eu tenho que pedir algum acesso. Eu vou dar uma sapiada qual que é. Essa dos diagramas aí, sabe? É... Não, eu tentei até procurar aqui, Itaú, Ia... Ia mais, sei lá o que, LE9. Estranho, eu achei que tinha esse acesso.
+
+
+
+50:22 - Leandro Tavares
+Deixa eu ver, deixa eu tentar só, é...
+
+50:26 - Alexandre Manoel Souza
+itaú.le... Leonics.net.
+
+50:28 - Leandro Tavares
+Cara, eu acho que tinha, né?
+
+50:31 - Alexandre Manoel Souza
+Deixa eu ver, é... A gente tem que, é...
+
+50:36 - Leandro Tavares
+Log sandbox ou production? Eu vou pro production, vamos ver se vai.
+
+50:48 - Alexandre Manoel Souza
+Será?
+
+50:49 - Leandro Tavares
+É, não foi.
+
+50:52 - Alexandre Manoel Souza
+Vamos tentar agora o sandbox.
+
+50:57 - Leandro Tavares
+Eu vou dar uma pesquisada aqui.
+
+51:04 - Leandro Tavares
+Ah, não.
+
+51:06 - Palestrante Não Identificado
+Boa, boa.
+
+51:08 - Palestrante Não Identificado
+Ah, legal.
+
+51:10 - Palestrante Não Identificado
+Perfeito.
+
+51:11 - Alexandre Manoel Souza
+É. Não, tá tranquilo. Tranquilo.
+
+51:16 - Alexandre Manoel Souza
+Não, tranquilo.
+
+51:18 - Alexandre Manoel Souza
+Eu vou...
+
+51:20 - Palestrante Não Identificado
+É.
+
+51:21 - Leandro Tavares
+É, aí... É melhor seguir essa linha de passar. Vamos criar uma sub, que foi o que o Cristian comentou.
+
+51:38 - Palestrante Não Identificado
+Acho que é melhor passar para o nome.
+
+51:44 - Palestrante Não Identificado
+Ah!
+
+51:45 - Leandro Tavares
+Ha, ha, ha!
+
+51:59 - Palestrante Não Identificado
+E fica parado lá, né?
+
+52:08 - Palestrante Não Identificado
+Dia 22 é a data que ele volta?
+
+52:23 - Palestrante Não Identificado
+Entendi.
+
+52:25 - Palestrante Não Identificado
+Eu pego 15 dias então.
+
+52:32 - Palestrante Não Identificado
+É?
+
+52:33 - Palestrante Não Identificado
+Eita.
+
+52:35 - Palestrante Não Identificado
+Tá bom.
+
+52:37 - Palestrante Não Identificado
+Ah!
+
+52:39 - Palestrante Não Identificado
+Isso é bom.
+
+52:43 - Palestrante Não Identificado
+Beleza, mano.
+
+52:46 - Palestrante Não Identificado
+Beleza.
+
+52:47 - Palestrante Não Identificado
+Valeu, cara.
+
+52:50 - Palestrante Não Identificado
+Obrigado aí.
+
+52:52 - Palestrante Não Identificado
+Até mais!
